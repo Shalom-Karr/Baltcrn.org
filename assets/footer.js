@@ -73,18 +73,18 @@
           <div class="flex items-center gap-3">
             <a href="${escAttr(p1Url)}" target="_blank" rel="noopener" title="${escAttr(p1Name)}"
                class="bg-white rounded-lg p-2 inline-flex items-center hover:scale-105 transition-transform shadow-md shadow-black/20">
-              <img src="assets/logo-ay.png" alt="${escAttr(p1Name)}" class="h-10 w-auto">
+              <img src="/assets/logo-ay.png" alt="${escAttr(p1Name)}" class="h-10 w-auto">
             </a>
             <a href="${escAttr(p2Url)}" target="_blank" rel="noopener" title="${escAttr(p2Name)}"
                class="bg-white rounded-lg p-2 inline-flex items-center hover:scale-105 transition-transform shadow-md shadow-black/20">
-              <img src="assets/logo-aimd.png" alt="${escAttr(p2Name)}" class="h-10 w-auto">
+              <img src="/assets/logo-aimd.png" alt="${escAttr(p2Name)}" class="h-10 w-auto">
             </a>
           </div>
         </div>
 
         <div class="md:col-span-4">
           <p class="text-[11px] font-bold uppercase tracking-widest text-blue-200/70 mb-4">${escAttr(contactLabel)}</p>
-          <a href="contact.html"
+          <a href="/contact.html"
              class="inline-flex items-center gap-2 mb-4 px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 rounded-lg text-sm font-bold text-white transition-colors">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -102,10 +102,10 @@
         <div class="md:col-span-3">
           <p class="text-[11px] font-bold uppercase tracking-widest text-blue-200/70 mb-4">${escAttr(linksLabel)}</p>
           <ul class="space-y-2 text-sm">
-            <li><a href="index.html#programs" class="text-blue-100 hover:text-white transition-colors">Programs</a></li>
-            ${faqOn ? `<li><a href="faq.html"  class="text-blue-100 hover:text-white transition-colors">FAQ</a></li>` : ''}
-            <li><a href="contact.html"  class="text-blue-100 hover:text-white transition-colors">Contact</a></li>
-            ${bookOn ? `<li><a href="book.html"     class="text-blue-100 hover:text-white transition-colors">Book a Call</a></li>` : ''}
+            <li><a href="/index.html#programs" class="text-blue-100 hover:text-white transition-colors">Programs</a></li>
+            ${faqOn ? `<li><a href="/faq.html"  class="text-blue-100 hover:text-white transition-colors">FAQ</a></li>` : ''}
+            <li><a href="/contact.html"  class="text-blue-100 hover:text-white transition-colors">Contact</a></li>
+            ${bookOn ? `<li><a href="/book.html"     class="text-blue-100 hover:text-white transition-colors">Book a Call</a></li>` : ''}
           </ul>
         </div>
       </div>
