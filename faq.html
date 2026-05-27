@@ -69,7 +69,7 @@
         </a>
         <div class="flex items-center gap-2">
           <a href="contact.html" class="text-xs font-bold bg-white border border-brand-700 text-brand-700 hover:bg-brand-50 px-3 py-1.5 rounded-lg transition-colors">Message Us</a>
-          <a href="book.html" class="text-xs font-bold bg-brand-700 hover:bg-brand-800 text-white px-3 py-1.5 rounded-lg transition-colors">Book a Call</a>
+          <a id="header-book-mobile" href="book.html" class="text-xs font-bold bg-brand-700 hover:bg-brand-800 text-white px-3 py-1.5 rounded-lg transition-colors">Book a Call</a>
         </div>
       </div>
       <!-- Desktop: single row -->
@@ -81,7 +81,7 @@
           <a href="index.html#programs" class="hover:text-brand-700">Programs</a>
           <a id="nav-faq" href="faq.html" class="hidden text-brand-700">FAQ</a>
           <a href="contact.html" class="hover:text-brand-700">Contact</a>
-          <a href="book.html"    class="hover:text-brand-700">Book a Call</a>
+          <a id="header-book-link" href="book.html" class="hover:text-brand-700">Book a Call</a>
         </nav>
       </div>
     </div>
@@ -103,7 +103,7 @@
     <div class="space-y-3" id="faq-list"></div>
     <div id="faq-empty" class="hidden py-12 text-center text-slate-400 text-sm">No FAQs published yet. Check back soon.</div>
 
-    <div class="mt-16 p-8 bg-gradient-to-br from-brand-700 to-brand-800 text-white rounded-2xl text-center">
+    <div id="faq-book-cta" class="mt-16 p-8 bg-gradient-to-br from-brand-700 to-brand-800 text-white rounded-2xl text-center">
       <h2 id="faq-cta-heading" class="text-2xl font-bold mb-2"></h2>
       <p id="faq-cta-subhead" class="text-blue-50/90 mb-5"></p>
       <a id="cta-book" href="#" class="inline-block bg-white hover:bg-blue-50 text-brand-800 font-bold px-6 py-3 rounded-xl transition-colors"></a>
@@ -136,6 +136,15 @@
       cta.href = isInline ? 'book.html' : C.calendlyUrl;
       if (isInline) { cta.removeAttribute('target'); cta.removeAttribute('rel'); }
       else          { cta.target = '_blank'; cta.rel = 'noopener'; }
+
+      // Booking master switch — hide header booking links and the bottom
+      // "still stuck? book a call" CTA card when booking is disabled.
+      const bookingOff = C.bookingEnabled === false;
+      const headerBook = document.getElementById('header-book-link');
+      const headerBookMobile = document.getElementById('header-book-mobile');
+      if (headerBook) headerBook.classList.toggle('hidden', bookingOff);
+      if (headerBookMobile) headerBookMobile.classList.toggle('hidden', bookingOff);
+      document.getElementById('faq-book-cta').classList.toggle('hidden', bookingOff);
       window.mountFooter();
     }
 

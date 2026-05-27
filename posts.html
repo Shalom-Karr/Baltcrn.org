@@ -146,7 +146,7 @@
         </a>
         <div class="flex items-center gap-2">
           <a href="/contact.html" onclick="if(window.trackBcrnClick)trackBcrnClick('message_us','/contact.html')" class="text-xs font-bold bg-white border border-brand-700 text-brand-700 hover:bg-brand-50 px-3 py-1.5 rounded-lg transition-colors">Message Us</a>
-          <a href="/book.html" onclick="if(window.trackBcrnClick)trackBcrnClick('book_call','/book.html')" class="text-xs font-bold bg-brand-700 hover:bg-brand-800 text-white px-3 py-1.5 rounded-lg transition-colors">Book a Call</a>
+          <a id="header-book-mobile" href="/book.html" onclick="if(window.trackBcrnClick)trackBcrnClick('book_call','/book.html')" class="text-xs font-bold bg-brand-700 hover:bg-brand-800 text-white px-3 py-1.5 rounded-lg transition-colors">Book a Call</a>
         </div>
       </div>
       <!-- Desktop: single row -->
@@ -158,7 +158,7 @@
           <a href="/index.html#programs" class="hover:text-brand-700">Programs</a>
           <a id="nav-faq" href="/faq.html" class="hidden hover:text-brand-700">FAQ</a>
           <a href="/contact.html" class="hover:text-brand-700">Contact</a>
-          <a href="/book.html" class="hover:text-brand-700">Book a Call</a>
+          <a id="header-book-link" href="/book.html" class="hover:text-brand-700">Book a Call</a>
         </nav>
       </div>
     </div>
@@ -210,7 +210,7 @@
 
           <div id="content" class="prose prose-slate prose-lg max-w-none"></div>
 
-          <aside class="mt-16 p-8 bg-gradient-to-br from-brand-700 to-brand-800 text-white rounded-2xl">
+          <aside id="post-book-cta" class="mt-16 p-8 bg-gradient-to-br from-brand-700 to-brand-800 text-white rounded-2xl">
             <h3 class="text-2xl font-bold mb-2">Need help with this application?</h3>
             <p class="text-blue-50/90 mb-5">Book a free 20-minute call and we'll walk through it together.</p>
             <a id="cta-calendly" href="#" onclick="if(window.trackBcrnClick)trackBcrnClick('book_call',this.href)" class="inline-block bg-white hover:bg-blue-50 text-brand-800 font-bold px-6 py-3 rounded-xl transition-colors">Book a free call</a>
@@ -248,6 +248,16 @@
       else          { cta.target = '_blank'; cta.rel = 'noopener'; }
       const faqLink = document.getElementById('nav-faq');
       if (faqLink) faqLink.classList.toggle('hidden', C.faqEnabled === false);
+
+      // Booking master switch — hide both header "Book a Call" buttons
+      // and the bottom "Need help with this application?" booking aside.
+      const bookingOff = C.bookingEnabled === false;
+      const headerBook = document.getElementById('header-book-link');
+      const headerBookMobile = document.getElementById('header-book-mobile');
+      if (headerBook) headerBook.classList.toggle('hidden', bookingOff);
+      if (headerBookMobile) headerBookMobile.classList.toggle('hidden', bookingOff);
+      const postCta = document.getElementById('post-book-cta');
+      if (postCta) postCta.classList.toggle('hidden', bookingOff);
       window.mountFooter();
     }
 

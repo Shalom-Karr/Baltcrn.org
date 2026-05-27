@@ -422,6 +422,12 @@
       applyBookingLinks(C);
       // FAQ link in header — only shown if the general FAQ section is enabled
       document.getElementById('nav-faq').classList.toggle('hidden', C.faqEnabled === false);
+      // Booking master switch — hide the #book CTA section and the two
+      // header "Book a Call" buttons when booking is disabled.
+      const bookingOff = C.bookingEnabled === false;
+      document.getElementById('book').classList.toggle('hidden', bookingOff);
+      document.getElementById('header-book-link').classList.toggle('hidden', bookingOff);
+      document.getElementById('header-book-mobile').classList.toggle('hidden', bookingOff);
       window.mountFooter();
     }
 

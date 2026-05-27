@@ -451,6 +451,13 @@
 
         <section id="settings-contact" class="settings-section bg-white border border-slate-200 rounded-xl p-6 space-y-4">
           <h2 class="text-sm font-bold uppercase tracking-wider text-slate-500">Contact &amp; Booking</h2>
+          <label class="flex items-start gap-3 p-3 bg-slate-50 border border-slate-200 rounded-lg cursor-pointer">
+            <input data-setting="bookingEnabled" data-bool="1" type="checkbox" class="w-4 h-4 mt-0.5 accent-brand-600">
+            <span class="text-sm text-slate-700">
+              <span class="font-bold">Enable booking</span><br>
+              <span class="text-xs text-slate-500">When off, every "Book a Call" button is hidden site-wide (header, homepage, footer, contact, FAQ, program guides) and the <code class="bg-white px-1 rounded">/book</code> page returns "page not found."</span>
+            </span>
+          </label>
           <div>
             <label class="block text-xs font-bold text-slate-600 mb-1">Calendly URL</label>
             <input data-setting="calendlyUrl" type="url" class="settings-input">

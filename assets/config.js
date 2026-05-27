@@ -36,6 +36,13 @@ window.SITE_CONFIG = {
    * Per-program FAQs (the FAQ tab on each guide) are not affected. */
   faqEnabled: true,
 
+  /* Master switch for booking. Same shape as faqEnabled above.
+   *   true  — "Book a Call" buttons appear in headers, homepage, footer,
+   *           contact / faq / posts pages, and /book.html embeds Calendly.
+   *   false — every booking link/button is hidden site-wide, the homepage
+   *           #book CTA section is removed, and /book.html returns 404. */
+  bookingEnabled: true,
+
   /* Web3Forms access key for the /contact form. The destination email
    * (where submissions get delivered) is configured in the Web3Forms
    * dashboard, not here — change it there if BCRN wants a different

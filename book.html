@@ -54,7 +54,7 @@
         </a>
         <div class="flex items-center gap-2">
           <a href="contact.html" class="text-xs font-bold bg-white border border-brand-700 text-brand-700 hover:bg-brand-50 px-3 py-1.5 rounded-lg transition-colors">Message Us</a>
-          <a href="book.html" class="text-xs font-bold bg-brand-700 text-white px-3 py-1.5 rounded-lg transition-colors">Book a Call</a>
+          <a id="header-book-mobile" href="book.html" class="text-xs font-bold bg-brand-700 text-white px-3 py-1.5 rounded-lg transition-colors">Book a Call</a>
         </div>
       </div>
       <!-- Desktop: single row -->
@@ -66,17 +66,25 @@
           <a href="index.html#programs" class="hover:text-brand-700">Programs</a>
           <a id="nav-faq" href="faq.html" class="hidden hover:text-brand-700">FAQ</a>
           <a href="contact.html" class="hover:text-brand-700">Contact</a>
-          <a href="book.html"    class="text-brand-700">Book a Call</a>
+          <a id="header-book-link" href="book.html" class="text-brand-700">Book a Call</a>
         </nav>
       </div>
     </div>
-    <div class="max-w-7xl mx-auto px-6 pb-3 text-center">
+    <div id="page-header-copy" class="max-w-7xl mx-auto px-6 pb-3 text-center">
       <h1 id="page-heading" class="text-lg font-bold tracking-tight text-slate-900">Book a free call</h1>
       <p id="page-subhead" class="text-slate-500 text-sm mt-0.5">Pick a time below — most calls are 20 minutes.</p>
     </div>
   </header>
 
-  <main>
+  <!-- "Page not found" view, shown when bookingEnabled is false -->
+  <main id="notfound" class="hidden max-w-3xl mx-auto px-6 py-20 text-center">
+    <p class="text-7xl font-extrabold text-slate-200 mb-4">404</p>
+    <h1 class="text-3xl font-extrabold text-slate-900 mb-2">Page not found</h1>
+    <p class="text-slate-500 mb-8">The page you're looking for doesn't exist.</p>
+    <a href="index.html" class="inline-block bg-brand-700 hover:bg-brand-800 text-white font-bold px-6 py-3 rounded-xl">Back to programs</a>
+  </main>
+
+  <main id="book-main" class="hidden">
     <div id="calendly-inline" class="calendly-fill w-full"></div>
   </main>
 
@@ -99,6 +107,13 @@
       window.mountFooter();
     }
 
+    function hideHeaderBookingLinks() {
+      const m = document.getElementById('header-book-mobile');
+      const d = document.getElementById('header-book-link');
+      if (m) m.classList.add('hidden');
+      if (d) d.classList.add('hidden');
+    }
+
     function mountCalendly(url) {
       const target = document.getElementById('calendly-inline');
       if (target.dataset.initializedFor === url) return;
@@ -115,8 +130,24 @@
       }
     }
 
-    applyConfig();
-    window.applyDynamicConfig().then(applyConfig);
+    /* Init — wait for DB-merged config to know whether the booking page
+     * should render. If bookingEnabled === false, show the 404 view and
+     * skip the Calendly mount entirely (mirrors faq.html). */
+    window.applyDynamicConfig().then(() => {
+      const C = window.SITE_CONFIG;
+      if (C.bookingEnabled === false) {
+        document.title = 'Page not found · ' + (C.name || 'BCRN');
+        document.getElementById('page-header-copy').classList.add('hidden');
+        hideHeaderBookingLinks();
+        document.getElementById('notfound').classList.remove('hidden');
+        const faqLink = document.getElementById('nav-faq');
+        if (faqLink) faqLink.classList.toggle('hidden', C.faqEnabled === false);
+        window.mountFooter();
+        return;
+      }
+      document.getElementById('book-main').classList.remove('hidden');
+      applyConfig();
+    });
   </script>
 </body>
 </html>
