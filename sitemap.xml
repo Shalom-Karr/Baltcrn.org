@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://baltcrn.org/</loc><lastmod>2026-08-02</lastmod></url>
+  <url><loc>https://baltcrn.org/book.html</loc><lastmod>2026-08-02</lastmod></url>
+  <url><loc>https://baltcrn.org/contact.html</loc><lastmod>2026-08-02</lastmod></url>
+  <url><loc>https://baltcrn.org/faq.html</loc><lastmod>2026-08-02</lastmod></url>
+  <url><loc>https://baltcrn.org/posts/${encodeURIComponent(p.slug)}</loc><lastmod>2026-08-02</lastmod></url>
+  <url><loc>https://baltcrn.org/posts/${encodeURIComponent(p.slug)}?view=faq</loc><lastmod>2026-08-02</lastmod></url>
+</urlset>
